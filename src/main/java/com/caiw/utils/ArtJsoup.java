@@ -83,6 +83,7 @@ public class ArtJsoup {
             }
         }catch (Exception e){
             System.err.println("爬取标题失败");
+            e.printStackTrace();
         }
         return articleList;
     }
