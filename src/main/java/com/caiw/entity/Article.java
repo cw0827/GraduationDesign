@@ -4,9 +4,19 @@ package com.caiw.entity;
  * Created by 蔡维 in 12:43 2018/3/7
  */
 public class Article {
+    private String id;
     private String title;
     private String source;
     private String Art;
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

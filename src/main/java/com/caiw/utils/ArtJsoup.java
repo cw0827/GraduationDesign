@@ -9,6 +9,7 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -24,6 +25,8 @@ public class ArtJsoup {
         Article article = new Article();
         try {
             document = Jsoup.connect(url).get();
+            //设置文章id
+            article.setId(UUID.randomUUID().toString());
             //获取文章标题
             article.setTitle(document.getElementsByClass("box").select("h1").text().replace(":","："));
             //获取文章来源

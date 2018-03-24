@@ -53,6 +53,14 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>5.1.43</version>
     </dependency>
+
+
+    <!-- https://mvnrepository.com/artifact/com.huaban/jieba-analysis -->
+    <dependency>
+      <groupId>com.huaban</groupId>
+      <artifactId>jieba-analysis</artifactId>
+      <version>1.0.2</version>
+    </dependency>
     <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.apache.spark/spark-core &ndash;&gt;-->
     <!--<dependency>-->
       <!--<groupId>org.apache.spark</groupId>-->
