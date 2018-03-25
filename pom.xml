@@ -61,6 +61,15 @@
       <artifactId>jieba-analysis</artifactId>
       <version>1.0.2</version>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apdplat/word -->
+    <dependency>
+      <groupId>org.apdplat</groupId>
+      <artifactId>word</artifactId>
+      <version>1.3</version>
+    </dependency>
+
+
     <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.apache.spark/spark-core &ndash;&gt;-->
     <!--<dependency>-->
       <!--<groupId>org.apache.spark</groupId>-->
@@ -80,5 +89,20 @@
       <!--<version>1.7.2</version>-->
     <!--</dependency>-->
 
+
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
 </project>

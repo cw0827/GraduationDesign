@@ -2,6 +2,8 @@ package com.caiw.job;
 
 import com.caiw.dao.impl.ArticleDaoImpl;
 import com.caiw.entity.Article;
+import com.caiw.entity.StockTerm;
+import com.caiw.utils.TermUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +16,17 @@ public class CutTerm {
         ArticleDaoImpl articleDao = new ArticleDaoImpl();
         //1、从数据库拿数据   需要文章编号，文章内容
         List<Article> articleList = articleDao.getArt();
-        //2、分词得到每个词的信息：文章编号  句编号  词编号  词   词性
+        //2、分词得到每个词的信息：文章编号  句编号  词编号  词   词性    //分词使用的word分词，训练模型  加载资源较慢
 
-
+        for (Article article:articleList) {
+            List<StockTerm> stockTermList = TermUtil.cutTerm(article);
+        }
+//        List<StockTerm> stockTermList = TermUtil.cutTerm(articleList.get(0));
+//
+//        for (StockTerm stockTerm : stockTermList) {
+//            System.out.println(stockTerm.toString());
+//            System.out.println();
+//        }
         //3、存入数据库Term表
 
 
