@@ -26,20 +26,9 @@ public class CutTerm {
             flag = stockTermDao.saveStockTerm(stockTermList);
         }
         if(flag){
-            System.out.println("分词以及存入数据库成功！");
+            System.out.println("分词以及存入数据库成功");
         }else {
-            System.out.println("分词以及存入数据库失败！");
+            System.out.println("分词以及存入数据库成功");
         }
-//        List<StockTerm> stockTermList = TermUtil.cutTerm(articleList.get(0));
-//
-//        for (StockTerm stockTerm : stockTermList) {
-//            System.out.println(stockTerm.toString());
-//            System.out.println();
-//        }
-
-
-
-
-
     }
 }
