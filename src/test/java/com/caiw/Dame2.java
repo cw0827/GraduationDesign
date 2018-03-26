@@ -65,14 +65,14 @@ public class Dame2 {
 
     @Test
     public  void Test1() {
-//        System.out.println(new Date(System.currentTimeMillis()));
-//        List<Word> words = WordSegmenter.seg("小米手机好");
-//
-//        System.out.println(words);
-//
-//        PartOfSpeechTagging.process(words);
-//
-//        System.out.println(words);
+        System.out.println(new Date(System.currentTimeMillis()));
+        List<Word> words = WordSegmenter.seg("小米手机欢快");
+
+        System.out.println(words);
+
+        PartOfSpeechTagging.process(words);
+
+        System.out.println(words);
 
 //                Result parse = ToAnalysis.parse("好东西");
 //        List<Term> terms = parse.getTerms();
