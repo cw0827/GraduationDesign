@@ -4,6 +4,7 @@ import com.caiw.entity.Article;
 import com.caiw.utils.JdbcUtil;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -27,9 +28,9 @@ public class ArticleDaoImpl {
             connection = JdbcUtil.getCon();
             //id使用UUID
             for (Article article:articleList) {
-                String sql = "INSERT into article VALUE(?,?,?)";
+                String sql = "INSERT into article VALUE(?,?,?,?)";
                 ps = connection.prepareStatement(sql);
-                JdbcUtil.setValues(ps, article.getId(),article.getTitle(),article.getArt());
+                JdbcUtil.setValues(ps, article.getId(),article.getTitle(),article.getArt(),article.getCreateTime());
                 int num = ps.executeUpdate();
                 if(num == 0){
                     flag = false;
@@ -57,14 +58,17 @@ public class ArticleDaoImpl {
         List<Article> articleList = new ArrayList<>();
         try {
             con = JdbcUtil.getCon();
-            String sql = "SELECT * from article";
+            String sql = "SELECT * from article WHERE create_time = ?";
             ps = con.prepareStatement(sql);
+            JdbcUtil.setValues(ps,"2018-03-25");
+//            JdbcUtil.setValues(ps,new Date(System.currentTimeMillis()));
             rs = ps.executeQuery();
             while(rs.next()){
                 Article article = new Article();
                 article.setId(rs.getString("id"));
                 article.setTitle(rs.getString("title"));
                 article.setArt(rs.getString("content"));
+                article.setCreateTime(rs.getDate("create_time"));
                 articleList.add(article);
             }
         }catch (Exception e){

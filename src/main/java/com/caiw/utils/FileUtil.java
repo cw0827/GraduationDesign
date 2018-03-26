@@ -35,7 +35,7 @@ public class FileUtil {
             FileWriter fw = null;
             try {
                 fw = new FileWriter(file);
-                fw.write(article.getTitle()+"\n"+article.getSource()+"\n"+article.getArt());
+                fw.write(article.getTitle()+"\n"+article.getCreateTime()+"\n"+article.getArt());
                 fw.flush();
                 fw.close();
             } catch (IOException e) {

@@ -30,7 +30,9 @@ public class ArtJsoup {
             //获取文章标题
             article.setTitle(document.getElementsByClass("box").select("h1").text().replace(":","：").replace("?","？"));
             //获取文章来源
-            article.setSource(document.getElementsByClass("d-author").select("a").get(0).text().replace(" 更多文章>>",""));
+//            article.setSource(document.getElementsByClass("d-author").select("a").get(0).text().replace(" 更多文章>>",""));
+            //文章时间
+            article.setCreateTime(new java.sql.Date(System.currentTimeMillis()));
             //获取文章内容
             Elements elements = document.getElementsByClass("article");
             //判断是否有页数

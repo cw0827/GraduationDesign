@@ -1,9 +1,15 @@
 package com.caiw.entity;
 
+import java.sql.Date;
+
 /**
  * Created by 蔡维 in 12:56 2018/3/24
  */
 public class StockTerm {
+    /**
+     * id
+     */
+    private String id;
     /**
      * 文章id、
      */
@@ -25,6 +31,18 @@ public class StockTerm {
      */
     private String nature;
 
+    /**
+     * 创建时间
+     */
+    private Date createTime;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getArticleId() {
         return articleId;
@@ -66,15 +84,24 @@ public class StockTerm {
         this.nature = nature;
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
     @Override
     public String toString() {
         return "StockTerm{" +
-                "articleId='" + articleId + '\'' +
+                "id='" + id + '\'' +
+                ", articleId='" + articleId + '\'' +
                 ", sentenceId=" + sentenceId +
                 ", stockTermId=" + stockTermId +
                 ", stockTerm='" + stockTerm + '\'' +
                 ", nature='" + nature + '\'' +
+                ", createTime=" + createTime +
                 '}';
     }
 }
