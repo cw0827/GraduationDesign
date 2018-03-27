@@ -2,9 +2,6 @@ package com.caiw.utils;
 
 import com.caiw.entity.Article;
 import com.caiw.entity.StockTerm;
-import org.ansj.domain.Result;
-import org.ansj.domain.Term;
-import org.ansj.splitWord.analysis.ToAnalysis;
 import org.apdplat.word.WordSegmenter;
 import org.apdplat.word.segmentation.Word;
 import org.apdplat.word.tagging.PartOfSpeechTagging;

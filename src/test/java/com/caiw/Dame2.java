@@ -1,12 +1,12 @@
 package com.caiw;
 
-import com.huaban.analysis.jieba.JiebaSegmenter;
-import org.ansj.app.keyword.KeyWordComputer;
-import org.ansj.app.keyword.Keyword;
-import org.ansj.domain.Result;
-import org.ansj.domain.Term;
-import org.ansj.splitWord.Analysis;
-import org.ansj.splitWord.analysis.ToAnalysis;
+//import com.huaban.analysis.jieba.JiebaSegmenter;
+//import org.ansj.app.keyword.KeyWordComputer;
+//import org.ansj.app.keyword.Keyword;
+//import org.ansj.domain.Result;
+//import org.ansj.domain.Term;
+//import org.ansj.splitWord.Analysis;
+//import org.ansj.splitWord.analysis.ToAnalysis;
 import org.apdplat.word.WordSegmenter;
 import org.apdplat.word.segmentation.PartOfSpeech;
 import org.apdplat.word.segmentation.SegmentationAlgorithm;
@@ -41,11 +41,11 @@ public class Dame2 {
         }
         String[] strings = buffer.toString().split("\n");
         String content = strings[2];
-        Result parse = ToAnalysis.parse(content);
-        List<Term> terms = parse.getTerms();
-        for (Term term:terms) {
-            System.out.println(term.getName()+'\t'+term.getNatureStr());
-        }
+//        Result parse = ToAnalysis.parse(content);
+//        List<Term> terms = parse.getTerms();
+//        for (Term term:terms) {
+//            System.out.println(term.getName()+'\t'+term.getNatureStr());
+//        }
 //        JiebaSegmenter jiebaSegmenter = new JiebaSegmenter();
 //        List<String> strings1 = jiebaSegmenter.sentenceProcess(content);
 //        for (String str:strings1) {

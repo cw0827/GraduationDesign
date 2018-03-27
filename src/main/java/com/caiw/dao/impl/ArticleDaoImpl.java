@@ -60,8 +60,8 @@ public class ArticleDaoImpl {
             con = JdbcUtil.getCon();
             String sql = "SELECT * from article WHERE create_time = ?";
             ps = con.prepareStatement(sql);
-            JdbcUtil.setValues(ps,"2018-03-25");
-//            JdbcUtil.setValues(ps,new Date(System.currentTimeMillis()));
+//            JdbcUtil.setValues(ps,"2018-03-25");
+            JdbcUtil.setValues(ps,new Date(System.currentTimeMillis()));
             rs = ps.executeQuery();
             while(rs.next()){
                 Article article = new Article();
