@@ -7,7 +7,8 @@
 
 
 ### 主要功能介绍
-* 爬取数据[地址](http://stock.stockstar.com/list/share.htm)
+* 爬取数据[地址](http://stock.quote.stockstar.com/stockinfo_info/comment.aspx?code=900905&pageid=3)
+* 地址解析：http://stock.quote.stockstar.com/stockinfo_info/comment.aspx?code="+股票代码+"&pageid="+页数
 * 爬取工具: `Java,Jsoup`
 * 爬取数据去向
     * `txt`文件
@@ -22,8 +23,8 @@
 ### 数据库 MySQL:120.79.24.24  
 * 数据库：`graduation_design `
     * 表：
-        * `article` : id,title,content,create_time
-        * `stock_term` : id,article_id,sentence_id,stockTerm_id,stock_term,nature,create_time
+        * `comment`:id,stock_code,comment,create_time
+        * `stock_term` : id,stock_code,article_id,sentence_id,stockTerm_id,stock_term,nature,create_time
         
 ### 分词工具
    * `Word`分词
