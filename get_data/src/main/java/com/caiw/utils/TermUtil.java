@@ -40,7 +40,7 @@ public class TermUtil {
                         StockTerm stockTerm = new StockTerm();
                         stockTerm.setId(UUID.randomUUID().toString());
                         stockTerm.setStockCode(comment.getStockCode());
-                        stockTerm.setArticleId(comment.getId());
+                        stockTerm.setCommentId(comment.getId());
                         stockTerm.setSentenceId(sentenceId);
                         stockTerm.setStockTerm(words.get(i).getText());
                         log.info(words.get(i).getText());

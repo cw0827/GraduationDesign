@@ -25,7 +25,7 @@ public class StockTermDaoImpl {
             for (StockTerm stockTerm : stockTermList) {
                 String sql = "INSERT INTO stock_term VALUE (?,?,?,?,?,?,?,?)";
                 ps = con.prepareStatement(sql);
-                JdbcUtil.setValues(ps,stockTerm.getId(),stockTerm.getStockCode(),stockTerm.getArticleId(),stockTerm.getSentenceId()
+                JdbcUtil.setValues(ps,stockTerm.getId(),stockTerm.getStockCode(),stockTerm.getCommentId(),stockTerm.getSentenceId()
                 ,stockTerm.getStockTermId(),stockTerm.getStockTerm(),stockTerm.getNature(),stockTerm.getCreateTime());
                 int num = ps.executeUpdate();
                 if(num == 0){

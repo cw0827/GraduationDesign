@@ -17,7 +17,7 @@ public class StockTerm {
     /**
      * 文章id、
      */
-    private String articleId;
+    private String commentId;
     /**
      * 句子id、第几句
      */
@@ -56,12 +56,12 @@ public class StockTerm {
         this.stockCode = stockCode;
     }
 
-    public String getArticleId() {
-        return articleId;
+    public String getCommentId() {
+        return commentId;
     }
 
-    public void setArticleId(String articleId) {
-        this.articleId = articleId;
+    public void setCommentId(String commentId) {
+        this.commentId = commentId;
     }
 
     public Integer getSentenceId() {
@@ -109,7 +109,7 @@ public class StockTerm {
         return "StockTerm{" +
                 "id='" + id + '\'' +
                 ", stockCode='" + stockCode + '\'' +
-                ", articleId='" + articleId + '\'' +
+                ", commentId='" + commentId + '\'' +
                 ", sentenceId=" + sentenceId +
                 ", stockTermId=" + stockTermId +
                 ", stockTerm='" + stockTerm + '\'' +
