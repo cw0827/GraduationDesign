@@ -1,0 +1,79 @@
+package com.caiw.utils;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by 蔡维 in 16:01 2018/3/30
+ */
+public class AnalyseUtil {
+
+    /**
+     * 典型词  ： 均线 回调 突破	回档 压力线	支撑线
+     */
+    public static String[] standardTerm = new String[]{"均线","回调","突破","回档","压力线","支撑线"};
+    public final static Logger log = LoggerFactory.getLogger(AnalyseUtil.class);
+    /**
+     * 每一个典型词对应的页面数
+     */
+    public static Map<String,Double> standardMap = new HashMap<>();
+
+    static {
+        for (String str:standardTerm) {
+            standardMap.put(str,JsoupUtil.getPageNum(str));
+        }
+    }
+    /**
+     * 取对数
+     * 页数 = 条数/10
+     */
+    public static Double getPmiIr(String stockTerm){
+        //（两个词一起的页数/分开的页数的乘积），然后取对数
+        double hitsOne = JsoupUtil.getPageNum(stockTerm);
+        double pmiIrAll = 0;
+        for (String str:standardTerm) {
+            double hitsTwo= standardMap.get(str);
+            double hitOneTwo = JsoupUtil.getPageNum(str+" "+stockTerm);
+            pmiIrAll += Math.log(hitOneTwo/(hitsOne*hitsTwo));
+        }
+        return pmiIrAll/standardTerm.length;
+    }
+
+    /**
+     * 对词进行筛选
+     * @return
+     */
+    public static List<String> doScreen(List<String> termList){
+        List<String> strings = new ArrayList<>();
+        List<String> screenTermList = new ArrayList<>();
+        for (String str:termList) {
+            if(strings.contains(str)){
+                log.info(str+"词已经被分析！！！！！！！！！！！");
+                if(screenTermList.contains(str)){
+                    screenTermList.add(str);
+                }
+            }else {
+                Double pmiIr = getPmiIr(str);
+                if(pmiIr > -18){
+                    screenTermList.add(str);
+                }
+            }
+            strings.add(str);
+        }
+        return screenTermList;
+    }
+
+
+
+
+    public static void main(String[] args) {
+        List<String> strings = new ArrayList<>();
+        strings.add("介入");
+        doScreen(strings);
+    }
+}
