@@ -3,10 +3,7 @@ package com.caiw.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by 蔡维 in 16:01 2018/3/30
@@ -48,32 +45,42 @@ public class AnalyseUtil {
      * 对词进行筛选
      * @return
      */
-    public static List<String> doScreen(List<String> termList){
-        List<String> strings = new ArrayList<>();
-        List<String> screenTermList = new ArrayList<>();
-        for (String str:termList) {
-            if(strings.contains(str)){
-                log.info(str+"词已经被分析！！！！！！！！！！！");
-                if(screenTermList.contains(str)){
-                    screenTermList.add(str);
-                }
-            }else {
-                Double pmiIr = getPmiIr(str);
-                if(pmiIr > -18){
-                    screenTermList.add(str);
-                }
+    public static Set<String> doScreen(Set<String> termSet){
+        Set<String> screenTermSet = new HashSet<>();
+        for (String term : termSet) {
+            //拿到词，判断他的PMI-IR分数是否再规定值
+            Double pmiIr = getPmiIr(term);
+            if (pmiIr > -18) {
+                screenTermSet.add(term);
             }
-            strings.add(str);
         }
-        return screenTermList;
+//        for (String str:termSet) {
+//            if(strings.contains(str)){
+//                log.info(str+"词已经被分析！！！！！！！！！！！");
+//                if(screenTermList.contains(str)){
+//                    screenTermList.add(str);
+//                }
+//            }else {
+//                Double pmiIr = getPmiIr(str);
+//                if(pmiIr > -18){
+//                    screenTermList.add(str);
+//                }
+//            }
+//        }
+        return screenTermSet;
     }
 
 
 
 
     public static void main(String[] args) {
-        List<String> strings = new ArrayList<>();
-        strings.add("介入");
-        doScreen(strings);
+        Set<String> strings = new HashSet<>();
+        strings.add("介入2");
+        strings.add("介入1");
+        strings.add("介入3");
+//        doScreen(strings);
+        for (String str: strings) {
+            System.out.println(str);
+        }
     }
 }

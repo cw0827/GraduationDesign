@@ -1,28 +1,34 @@
 package com.caiw.job;
 
 import com.caiw.dao.impl.StockTermDaoImpl;
+import com.caiw.entity.StockTerm;
 import com.caiw.utils.AnalyseUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by 蔡维 in 14:54 2018/3/30
  */
 public class ScreenTerm {
+
+    public final static Logger log = LoggerFactory.getLogger(ScreenTerm.class);
+
     public static void main(String[] args) {
+        String stockCode = "900905";
         StockTermDaoImpl stockTermDao = new StockTermDaoImpl();
-        List<String> termsList = stockTermDao.getScreenTerm("900905");
-        //拿到筛选后的词
-        List<String> termList = new ArrayList<>();
+        List<String> termsList = stockTermDao.getScreenTerm(stockCode);
+        //拿到筛选后的词 set集合去重（没必要分词一个重复的词，消耗性能、网络io）
+        Set<String> termSet = new HashSet<>();
         for (String terms: termsList) {
             String[] split = terms.split(",");
-            termList.addAll(Arrays.asList(split));
+            termSet.addAll(Arrays.asList(split));
         }
-        //对词进行第二轮筛选 screenTermList为筛选结果
-
-        List<String> screenTermList = AnalyseUtil.doScreen(termList);
-        System.out.println(screenTermList);
+        //对词进行第二轮筛选 screenTermList为筛选结果（改为Set集合）
+        Set<String> screenTermSet = AnalyseUtil.doScreen(termSet);
+        //从数据库找到这些词，然后获取出所有信息,存入screen_term表,调用方法吧
+        long insertNum = stockTermDao.getByStockTermToScreen(screenTermSet, stockCode);
+        log.info("分析后插入筛选表的行数为："+insertNum);
     }
 }

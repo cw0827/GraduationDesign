@@ -1,13 +1,16 @@
 package com.caiw.dao.impl;
 
 
+import com.caiw.entity.StockTerm;
 import com.caiw.utils.JdbcUtil;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by 蔡维 in 14:42 2018/3/30
@@ -48,4 +51,34 @@ public class StockTermDaoImpl {
         }
         return termsList;
     }
+
+    /**
+     * 根据词找到对应词的所有信息
+     * @param stockCode  股票代码
+     * @param termSet  词集合
+     * @return 返回新表中插入的行数
+     */
+    public long getByStockTermToScreen(Set<String> termSet,String stockCode){
+        long num = 0;
+        Connection con = null;
+        PreparedStatement ps = null;
+        try {
+            con = JdbcUtil.getCon();
+            for (String term : termSet) {
+                String sql = "insert into screen_term SELECT * from stock_term where stock_term = ? and stock_code = ?";
+                ps = con.prepareStatement(sql);
+                JdbcUtil.setValues(ps,term,stockCode);
+                num = ps.executeLargeUpdate();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            JdbcUtil.close(con,ps,null);
+        }
+        return num;
+    }
+
+
+
+
 }
