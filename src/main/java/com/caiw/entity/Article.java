@@ -8,6 +8,7 @@ import java.sql.Date;
 public class Article {
     private String id;
     private String title;
+    private String source;
     private String Art;
     private Date createTime;
 
@@ -25,6 +26,14 @@ public class Article {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 
     public String getArt() {
@@ -48,8 +57,9 @@ public class Article {
         return "Article{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
+                ", source='" + source + '\'' +
                 ", Art='" + Art + '\'' +
-                ", createTime='" + createTime + '\'' +
+                ", createTime=" + createTime +
                 '}';
     }
 }
