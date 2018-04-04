@@ -6,6 +6,13 @@
 
 
 
+### 模块说明
+* get_data:爬取数据存入数据库，并将数据分词，分词数据也存入数据库
+* screen:对分词的数据进行筛选，分为两轮。先通过词性模板将少数词过滤，在通过PMI-IR对词进行筛选。
+* analyse:
+
+
+
 ### 主要功能介绍
 * 爬取数据[地址](http://stock.quote.stockstar.com/stockinfo_info/comment.aspx?code=900905&pageid=3)
 * 地址解析：`http://stock.quote.stockstar.com/stockinfo_info/comment.aspx?code="+股票代码+"&pageid="+页数`

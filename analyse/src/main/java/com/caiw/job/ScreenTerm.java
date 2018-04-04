@@ -16,7 +16,7 @@ public class ScreenTerm {
     public final static Logger log = LoggerFactory.getLogger(ScreenTerm.class);
 
     public static void main(String[] args) {
-        String stockCode = "900905";
+        String stockCode = "900908";
         StockTermDaoImpl stockTermDao = new StockTermDaoImpl();
         List<String> termsList = stockTermDao.getScreenTerm(stockCode);
         //拿到筛选后的词 set集合去重（没必要分词一个重复的词，消耗性能、网络io）

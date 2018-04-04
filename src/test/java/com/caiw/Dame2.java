@@ -1,18 +1,23 @@
 package com.caiw;
 
-//import com.huaban.analysis.jieba.JiebaSegmenter;
-//import org.ansj.app.keyword.KeyWordComputer;
-//import org.ansj.app.keyword.Keyword;
-//import org.ansj.domain.Result;
-//import org.ansj.domain.Term;
-//import org.ansj.splitWord.Analysis;
-//import org.ansj.splitWord.analysis.ToAnalysis;
+
+import org.ansj.app.keyword.KeyWordComputer;
+import org.ansj.app.keyword.Keyword;
+import org.ansj.domain.Result;
+import org.ansj.domain.Term;
+import org.ansj.library.DicLibrary;
+import org.ansj.splitWord.Analysis;
+import org.ansj.splitWord.analysis.IndexAnalysis;
+import org.ansj.splitWord.analysis.NlpAnalysis;
+import org.ansj.splitWord.analysis.ToAnalysis;
 import org.apdplat.word.WordSegmenter;
 import org.apdplat.word.segmentation.PartOfSpeech;
 import org.apdplat.word.segmentation.SegmentationAlgorithm;
 import org.apdplat.word.segmentation.Word;
 import org.apdplat.word.tagging.PartOfSpeechTagging;
 import org.junit.Test;
+import org.nlpcn.commons.lang.tire.domain.Forest;
+import org.nlpcn.commons.lang.tire.library.Library;
 
 import java.io.*;
 import java.sql.Date;
@@ -66,19 +71,20 @@ public class Dame2 {
     @Test
     public  void Test1() {
         System.out.println(new Date(System.currentTimeMillis()));
-        List<Word> words = WordSegmenter.seg("小米手机欢快");
+//        List<Word> words = WordSegmenter.seg("小米手机欢快");
+//
+//        System.out.println(words);
+//
+//        PartOfSpeechTagging.process(words);
+//
+//        System.out.println(words);
 
-        System.out.println(words);
-
-        PartOfSpeechTagging.process(words);
-
-        System.out.println(words);
-
-//                Result parse = ToAnalysis.parse("好东西");
-//        List<Term> terms = parse.getTerms();
-//        for (Term term:terms) {
-//            System.out.println(term.getName()+'\t'+term.getNatureStr());
-//        }
+//        Result parse = ToAnalysis.parse("连续下跌多日,抄底为宜");
+        Result parse = NlpAnalysis.parse("连续下跌多日,抄底为宜");
+        List<Term> terms = parse.getTerms();
+        for (Term term:terms) {
+            System.out.println(term.getName()+'\t'+term.getNatureStr());
+        }
     }
 
 }
