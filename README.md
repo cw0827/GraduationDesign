@@ -13,6 +13,9 @@
 
 
 
+### 打包说明
+* 最后程序打包jar ,放在linux运行。  可以用到NiFi,（读取csv文件到mysql，hive等）
+
 ### 主要功能介绍
 * 爬取数据[地址](http://stock.quote.stockstar.com/stockinfo_info/comment.aspx?code=900905&pageid=3)
 * 地址解析：`http://stock.quote.stockstar.com/stockinfo_info/comment.aspx?code="+股票代码+"&pageid="+页数`
@@ -116,3 +119,4 @@
 ### 特征词层面划分
 * 先手动划分层面
 * 拿到screen_term表的特征词数据，然后找到该词所在句子，判断自己中是否有否定词等消极的词，如果有就没有分，否则就加分。
+* 否定词：1分    肯定词：5分  其他：3分
