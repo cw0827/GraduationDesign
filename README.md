@@ -74,7 +74,7 @@
 * 词性路径模板统计
     * SQL：
     ```SQL
-    //得出词性路径模板数
+    //统计词性路径模板数
     select 
     b.comment_id,b.sentence_id,count(1) as `num`,b.sentence_nature,GROUP_CONCAT("-",b.sentence)
     from 
