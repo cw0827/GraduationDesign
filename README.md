@@ -7,9 +7,10 @@
 
 
 ### 模块说明
-* get_data:爬取数据存入数据库，并将数据分词，分词数据也存入数据库
-* screen:对分词的数据进行筛选，分为两轮。先通过词性模板将少数词过滤，在通过PMI-IR对词进行筛选。
-* analyse:
+* get_data:爬取数据存入数据库，并将数据发送到kafka.
+* analyse:对分词的数据进行筛选，分为两轮。先通过词性模板将少数词过滤，在通过PMI-IR对词进行筛选。
+* streaming_cut_term: scala编写的sparkStreaming程序，实时从kafka拿取消息，进行实时分词，分词数据存入mysql
+* term_score:对筛选后的词打分。
 
 
 
@@ -40,15 +41,44 @@
             <version>1.3</version>
        </dependency>
     ```
-   
+* sparkStreaming实时处理
+   * 描述：
+   ```xml
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-core_2.11</artifactId>
+      <version>2.1.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-streaming -->
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-streaming_2.11</artifactId>
+      <version>2.1.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-streaming-kafka-0-10 -->
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
+      <version>2.1.0</version>
+    </dependency>
+    ```
+* kafka消息系统
+    * 描述:
+    ```xml
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka-clients</artifactId>
+      <version>0.10.0.0</version>
+    </dependency>
+    ```
    
 ### 数据库 MySQL:120.79.24.24  
 * 数据库：`graduation_design `
     * 表：
         * `comment`:id,stock_code,comment,create_time
         * `stock_term` : id,stock_code,article_id,sentence_id,stockTerm_id,stock_term,nature,create_time
-        
-        
+        * `screen_term`: id,stock_code,article_id,sentence_id,stockTerm_id,stock_term,nature,create_time
+        * ``:
         
 ### 股票相关术语（6个）
 * 压力线：当股价上涨到某价位附近时，股价就会停止上涨，甚至回落。压力线起阻止股价继续上涨的作用。
@@ -117,6 +147,10 @@
 
 
 ### 特征词层面划分
-* 先手动划分层面
+* 拿到筛选过后的名词
+```sql
+   select * from screen_term where stock_code = "+股票代码+" GROUP BY stock_term HAVING nature = '名词';
+```
+* 手动划分层面
 * 拿到screen_term表的特征词数据，然后找到该词所在句子，判断自己中是否有否定词等消极的词，如果有就没有分，否则就加分。
 * 否定词：1分    肯定词：5分  其他：3分
