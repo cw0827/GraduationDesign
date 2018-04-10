@@ -34,8 +34,9 @@ public class GetData {
         String stockCode = scanner.nextLine();
         //调用方法爬取数据(同时存入kafka中)
         List<Comment> commentList = ArtJsoup.getComment(stockCode);
-        //1、存进txt文件   一篇文章放在一个txt文件中(后面可以放HDfs吧)
+        //1、存进txt文件   一篇文章放在一个txt文件中(后面可以放HDfs吧)（换成hdfs接口就行）
         FileUtil.saveComment(commentList);
+        FileUtil.saveCommentToHdfs(commentList);
         //2、存进mysql comment表(字段：id,stockCode,comment,create_time )
         CommentDaoImpl commentDao = new CommentDaoImpl();
         Boolean saveFlag = commentDao.saveComment(commentList);
@@ -46,6 +47,8 @@ public class GetData {
         }
 
         producer.close();
+
+
 //        //1、分词得到每个词的信息：文章编号  句编号  词编号  词   词性    //分词使用的word分词，训练模型  加载资源较慢
 //        StockTermDaoImpl stockTermDao = new StockTermDaoImpl();
 //        boolean flag = false;

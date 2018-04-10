@@ -54,19 +54,6 @@ public class AnalyseUtil {
                 screenTermSet.add(term);
             }
         }
-//        for (String str:termSet) {
-//            if(strings.contains(str)){
-//                log.info(str+"词已经被分析！！！！！！！！！！！");
-//                if(screenTermList.contains(str)){
-//                    screenTermList.add(str);
-//                }
-//            }else {
-//                Double pmiIr = getPmiIr(str);
-//                if(pmiIr > -18){
-//                    screenTermList.add(str);
-//                }
-//            }
-//        }
         return screenTermSet;
     }
 
@@ -78,7 +65,6 @@ public class AnalyseUtil {
         strings.add("介入2");
         strings.add("介入1");
         strings.add("介入3");
-//        doScreen(strings);
         for (String str: strings) {
             System.out.println(str);
         }

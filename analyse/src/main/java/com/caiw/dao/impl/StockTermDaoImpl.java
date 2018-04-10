@@ -1,11 +1,9 @@
 package com.caiw.dao.impl;
 
 
-import com.caiw.entity.StockTerm;
 import com.caiw.utils.JdbcUtil;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -17,6 +15,11 @@ import java.util.Set;
  */
 public class StockTermDaoImpl {
 
+    /**
+     * 获取词，并通过此行模板进行筛选一次
+     * @param stockCode 股票代码
+     * @return 第一轮筛选过后的词
+     */
     public List<String> getScreenTerm(String stockCode){
         List<String> termsList = new ArrayList<>();
         Connection con = null;
