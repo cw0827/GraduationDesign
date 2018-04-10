@@ -52,7 +52,10 @@
                 <version>5.1.43</version>
             </dependency>
 
-
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-clients</artifactId>
+            </dependency>
             <!-- https://mvnrepository.com/artifact/com.huaban/jieba-analysis -->
             <!--<dependency>-->
             <!--<groupId>com.huaban</groupId>-->

@@ -46,11 +46,6 @@ public class Comment {
 
     @Override
     public String toString() {
-        return "Comment{" +
-                "id='" + id + '\'' +
-                ", stockCode='" + stockCode + '\'' +
-                ", comment='" + comment + '\'' +
-                ", createTime=" + createTime +
-                '}';
+        return id+"\t"+stockCode+"\t"+comment+"\t"+createTime;
     }
 }

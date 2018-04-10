@@ -40,7 +40,7 @@ public class PropertiesUtil {
      * 获取生产者的properties
      * @return
      */
-    public static Properties getProduceProperties(){
+    public static Properties getProdeceProperties(){
         Properties properties = new Properties();
         InputStream in = PropertiesUtil.class.getResourceAsStream("/producer.properties");
         try {
