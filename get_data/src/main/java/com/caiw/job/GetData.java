@@ -19,15 +19,21 @@ import java.util.Scanner;
  */
 public class GetData {
     public final static Logger log = LoggerFactory.getLogger(GetData.class);
+    public static Producer<String,String> producer = null;
 
+
+    /**
+     *  将数据进行存储(原始数据存储)（1、存进txt文件。2、存进kafka----实时分词。3、存进MySql--手动分词）
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
-
+        producer = new KafkaProducer<>(PropertiesUtil.getProduceProperties());
         log.info("请输入股票代码：");
         Scanner scanner = new Scanner(System.in);
         String stockCode = scanner.nextLine();
-        //调用方法爬取数据
+        //调用方法爬取数据(同时存入kafka中)
         List<Comment> commentList = ArtJsoup.getComment(stockCode);
-        //将数据进行存储(原始数据存储)（1、存进txt文件。2、存进kafka---待定---实时分词。3、存进MySql--手动分词）
         //1、存进txt文件   一篇文章放在一个txt文件中(后面可以放HDfs吧)
         FileUtil.saveComment(commentList);
         //2、存进mysql comment表(字段：id,stockCode,comment,create_time )
@@ -38,9 +44,8 @@ public class GetData {
         }else {
             log.info("存入数据库失败！");
         }
-        //3、存进kafka（现在是公司的kafka）
-        KafkaUtil.kafkaProduce(commentList);
 
+        producer.close();
 //        //1、分词得到每个词的信息：文章编号  句编号  词编号  词   词性    //分词使用的word分词，训练模型  加载资源较慢
 //        StockTermDaoImpl stockTermDao = new StockTermDaoImpl();
 //        boolean flag = false;
