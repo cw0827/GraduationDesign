@@ -38,13 +38,13 @@ public class GetData {
         FileUtil.saveComment(commentList);
         FileUtil.saveCommentToHdfs(commentList);
         //2、存进mysql comment表(字段：id,stockCode,comment,create_time )
-        CommentDaoImpl commentDao = new CommentDaoImpl();
-        Boolean saveFlag = commentDao.saveComment(commentList);
-        if(saveFlag){
-            log.info("存入数据库成功！");
-        }else {
-            log.info("存入数据库失败！");
-        }
+//        CommentDaoImpl commentDao = new CommentDaoImpl();
+//        Boolean saveFlag = commentDao.saveComment(commentList);
+//        if(saveFlag){
+//            log.info("存入数据库成功！");
+//        }else {
+//            log.info("存入数据库失败！");
+//        }
 
         producer.close();
 

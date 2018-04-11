@@ -20,7 +20,7 @@ public class KafkaUtil {
      * @param comment 评论
      */
     public static void kafkaProduce(Comment comment){
-        GetData.producer.send(new ProducerRecord<>("cwTest002",new Random(10).toString(),comment.toString()));
+        GetData.producer.send(new ProducerRecord<>("cwTest001",new Random(10).toString(),comment.toString()));
         GetData.producer.flush();
     }
 

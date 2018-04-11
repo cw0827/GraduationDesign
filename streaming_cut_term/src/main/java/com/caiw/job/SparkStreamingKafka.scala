@@ -23,7 +23,8 @@ object SparkStreamingKafka {
   def main(args: Array[String]): Unit = {
 
     val kafkaProperties=Map[String,Object](
-      "bootstrap.servers"-> "192.168.23.121:9092",
+//      "bootstrap.servers"-> "192.168.200.11:9092",
+      "bootstrap.servers"-> "120.79.24.24:9092",
       "key.deserializer"->classOf[StringDeserializer],
       "value.deserializer"->classOf[StringDeserializer],
       "group.id"->"caiW",
@@ -35,7 +36,7 @@ object SparkStreamingKafka {
     sc.setLogLevel("WARN")
     val ssc = new StreamingContext(sc,Seconds(5))
 
-    val topics = Array("cwTest002")
+    val topics = Array("cwTest001")
     val kafkaRDD = KafkaUtils.createDirectStream(ssc,PreferConsistent,Subscribe[String,String](topics,kafkaProperties))
 
     kafkaRDD.map(_.value().split("\t")).foreachRDD{
@@ -46,6 +47,7 @@ object SparkStreamingKafka {
             //句子id,最开始为1。
             var sentenceId = 1
             //对文章进行分句
+            println(comment(2))
             val splitOne = comment(2).split(";")
             for (s <- splitOne) {
               val stringTwo = s.split(",")
