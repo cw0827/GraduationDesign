@@ -26,7 +26,7 @@ public class KafkaUtil {
 
 
     public static void kafkaProduce(String comment){
-        GetData.producer.send(new ProducerRecord<>("cwTest002",new Random(10).toString(),comment));
+        GetData.producer.send(new ProducerRecord<>("cwTest001",new Random(10).toString(),comment));
         GetData.producer.flush();
     }
 
