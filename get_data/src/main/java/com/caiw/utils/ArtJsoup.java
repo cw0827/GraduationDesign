@@ -44,7 +44,7 @@ public class ArtJsoup {
                     //爬取时间
                     comment.setCreateTime(new java.sql.Date(System.currentTimeMillis()));
                     //存进kafka（现在是公司的kafka）
-//                    KafkaUtil.kafkaProduce(comment);
+                    KafkaUtil.kafkaProduce(comment);
                     commentList.add(comment);
                 }
                 Elements n = document.getElementsByClass("n");

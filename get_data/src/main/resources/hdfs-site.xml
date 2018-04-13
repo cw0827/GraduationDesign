@@ -21,5 +21,16 @@
         <name>dfs.replication</name>
         <value>1</value>
         </property>
-
+        <property>
+                <name>dfs.datanode.address</name>
+                <value>caiwei01:50010</value>
+        </property>
+        <property>
+                <name>dfs.datanode.http.address</name>
+                <value>caiwei01:50075</value>
+        </property>
+        <property>
+                <name>dfs.datanode.ipc.address</name>
+                <value>caiwei01:50020</value>
+        </property>
 </configuration>

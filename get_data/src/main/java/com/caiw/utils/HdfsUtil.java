@@ -31,7 +31,7 @@ public class HdfsUtil {
             conf.set("fs.hdfs.impl","org.apache.hadoop.hdfs.DistributedFileSystem");
             conf .set("dfs.client.block.write.replace-datanode-on-failure.policy" ,"NEVER" );
             conf .set("dfs.client.block.write.replace-datanode-on-failure.enable" ,"true" );
-            return FileSystem.get(new URI("hdfs://192.168.200.11:9001"),conf,"root");
+            return FileSystem.get(new URI("hdfs://caiwei01:9000"),conf,"root");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
