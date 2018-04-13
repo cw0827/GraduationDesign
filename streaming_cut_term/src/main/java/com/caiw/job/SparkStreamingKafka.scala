@@ -36,7 +36,7 @@ object SparkStreamingKafka {
     sc.setLogLevel("WARN")
     val ssc = new StreamingContext(sc,Seconds(5))
 
-    val topics = Array("cwTest001")
+    val topics = Array("cwTest003")
     val kafkaRDD = KafkaUtils.createDirectStream(ssc,PreferConsistent,Subscribe[String,String](topics,kafkaProperties))
 
     kafkaRDD.map(_.value().split("\t")).foreachRDD{

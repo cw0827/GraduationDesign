@@ -5,6 +5,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -82,6 +83,14 @@ public class ArticleJsoup2 {
         List<Article> articleList = getTitle();
         for (Article article: articleList) {
             System.out.println(article);
+        }
+    }
+
+
+    @Test
+    public void test1(){
+        for (int i = 0; i < 50; i++) {
+            System.out.println(UUID.randomUUID().toString());
         }
     }
 }
