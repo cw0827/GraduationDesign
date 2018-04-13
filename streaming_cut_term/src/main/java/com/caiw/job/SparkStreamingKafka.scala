@@ -24,7 +24,7 @@ object SparkStreamingKafka {
 
     val kafkaProperties=Map[String,Object](
 //      "bootstrap.servers"-> "192.168.200.11:9092",
-      "bootstrap.servers"-> "120.79.24.24:9092",
+      "bootstrap.servers"-> "47.106.142.94:9092",
       "key.deserializer"->classOf[StringDeserializer],
       "value.deserializer"->classOf[StringDeserializer],
       "group.id"->"caiW",
@@ -36,7 +36,7 @@ object SparkStreamingKafka {
     sc.setLogLevel("WARN")
     val ssc = new StreamingContext(sc,Seconds(5))
 
-    val topics = Array("cwTest003")
+    val topics = Array("cwTest001")
     val kafkaRDD = KafkaUtils.createDirectStream(ssc,PreferConsistent,Subscribe[String,String](topics,kafkaProperties))
 
     kafkaRDD.map(_.value().split("\t")).foreachRDD{

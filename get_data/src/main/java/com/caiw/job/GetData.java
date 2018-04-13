@@ -46,13 +46,12 @@ public class GetData {
             Boolean saveFlag = commentDao.saveComment(commentList);
             if(saveFlag){
                 log.info(stockCode+"评论数据存入数据库成功！");
+                stockDao.setJsoupFlag(stockCode);
             }else {
                 log.info(stockCode+"评论数据存入数据库失败！");
             }
         }
-
         producer.close();
-
 
 
     }
