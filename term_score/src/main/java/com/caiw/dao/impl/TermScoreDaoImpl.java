@@ -26,7 +26,7 @@ public class TermScoreDaoImpl {
         ResultSet rs = null;
         try {
             con = JdbcUtil.getCon();
-            String sql = "select comment_id from screen_term where stock_code = ? and nature = '名词' and stock_term = ? GROUP BY comment_id;";
+            String sql = "select comment_id from stock_term where stock_code = ? and nature = 'n' and stock_term = ? GROUP BY comment_id;";
             ps = con.prepareStatement(sql);
             JdbcUtil.setValues(ps,stockCode,screenTerm);
             rs = ps.executeQuery();

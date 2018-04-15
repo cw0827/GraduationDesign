@@ -78,7 +78,8 @@
         * `comment`:id,stock_code,comment,create_time
         * `stock_term` : id,stock_code,article_id,sentence_id,stockTerm_id,stock_term,nature,create_time
         * `screen_term`: id,stock_code,article_id,sentence_id,stockTerm_id,stock_term,nature,create_time
-        * ``:
+        * `term_score`:id,stock_code,mac_score,min_score,mar_score,create_time
+        * `stock`:id,stock_code,stock_name,industry,jsoup_flag,screen_flag,score_flag
         
 ### 股票相关术语（6个）
 * 压力线：当股价上涨到某价位附近时，股价就会停止上涨，甚至回落。压力线起阻止股价继续上涨的作用。

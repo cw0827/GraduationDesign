@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -31,6 +32,7 @@ public class GetData {
      */
     public static void main(String[] args) throws IOException {
         producer = new KafkaProducer<>(PropertiesUtil.getProduceProperties());
+        boolean saveFlag = false;
         //从数据库获取出股票代码
         StockDaoImpl stockDao = new StockDaoImpl();
         List<String> stockCodes = stockDao.getStockCodes();
@@ -43,7 +45,7 @@ public class GetData {
 //        FileUtil.saveCommentToHdfs(commentList);
             //2、存进mysql comment表(字段：id,stockCode,comment,create_time )
             CommentDaoImpl commentDao = new CommentDaoImpl();
-            Boolean saveFlag = commentDao.saveComment(commentList);
+            saveFlag = commentDao.saveComment(commentList);
             if(saveFlag){
                 log.info(stockCode+"评论数据存入数据库成功！");
                 stockDao.setJsoupFlag(stockCode);
@@ -52,8 +54,14 @@ public class GetData {
             }
         }
         producer.close();
-
-
+        if(saveFlag){
+            try {
+                Thread.sleep(30000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            //调用筛选词汇的程序，可以用shell
+        }
     }
 }
 

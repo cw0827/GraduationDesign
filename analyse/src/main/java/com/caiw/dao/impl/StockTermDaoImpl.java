@@ -39,7 +39,7 @@ public class StockTermDaoImpl {
                     " where s.stock_code = ? " +
                     " ORDER BY s.comment_id,s.sentence_id,s.stock_term_id ) as `a`" +
                     " GROUP BY a.comment_id,a.sentence_id) as `b` " +
-                    " GROUP BY b.sentence_nature HAVING `num`>70 ORDER BY num desc;";
+                    " GROUP BY b.sentence_nature ORDER BY num desc limit 0,8;";
             ps = con.prepareStatement(sql);
             JdbcUtil.setValues(ps,stockCode);
             rs = ps.executeQuery();

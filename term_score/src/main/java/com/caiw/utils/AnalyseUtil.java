@@ -1,6 +1,7 @@
 package com.caiw.utils;
 
 import com.caiw.dao.impl.TermScoreDaoImpl;
+import com.caiw.entity.StockScore;
 import com.caiw.entity.TermScore;
 
 import java.sql.Timestamp;
@@ -23,12 +24,10 @@ public class AnalyseUtil {
      * @param stockCode
      * @return
      */
-    public static List<TermScore> getTermScoreList(String stockCode){
-        //获取出筛选的词
-        String[] screenWords = GenerateData.getSCREENWORDS();
+    public static List<TermScore> getTermScoreList(String stockCode,String[] terms){
         List<TermScore> termScoreList = new ArrayList<>();
         //循环遍历所有的词
-        for(String screenTerm : screenWords){
+        for(String screenTerm : terms){
             TermScore termScore = new TermScore();
             //生成id
             termScore.setId(UUID.randomUUID().toString());
@@ -113,4 +112,45 @@ public class AnalyseUtil {
         }
         return flag;
     }
+
+    /**
+     * 获取股票的分数
+     * @param termScoreListByMac 宏观词分数
+     * @param termScoreListByMic  微观词分数
+     * @param termScoreListByMar    市场词分数
+     * @return  股票分数对象
+     */
+    public static StockScore getStockScore(List<TermScore> termScoreListByMac, List<TermScore> termScoreListByMic, List<TermScore> termScoreListByMar) {
+        StockScore stockScore = new StockScore();
+        stockScore.setId(UUID.randomUUID().toString());
+        stockScore.setStockCode(termScoreListByMac.get(0).getStockCode());
+        stockScore.setCreateTime(new Timestamp(System.currentTimeMillis()));
+        stockScore.setMacScore(getWeightedMean(termScoreListByMac));
+        stockScore.setMicScore(getWeightedMean(termScoreListByMic));
+        stockScore.setMarScore(getWeightedMean(termScoreListByMar));
+        return stockScore;
+    }
+
+
+    /**
+     * 获得所有词的加权平均分
+     * @param termScoreList 股票词分数列表
+     * @return 加权平均分
+     */
+    private static Double getWeightedMean(List<TermScore> termScoreList) {
+        Double score = 0.0;
+        int count = 0;
+        for (TermScore termScore : termScoreList) {
+            score += termScore.getScore();
+            count += termScore.getCount();
+        }
+        if(count != 0){
+            return score/count;
+        }else {
+            return 0.0;
+        }
+    }
+
+
+
 }

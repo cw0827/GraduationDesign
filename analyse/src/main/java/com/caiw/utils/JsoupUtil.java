@@ -36,7 +36,8 @@ public class JsoupUtil {
                 pageNum = Math.rint(Double.parseDouble(selectNum)/10);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("爬取页数出错了，返回0页");
+            return 0.0;
         }
         return pageNum;
     }
