@@ -4,6 +4,7 @@ import com.caiw.dao.impl.StockDaoImpl;
 import com.caiw.dao.impl.StockTermDaoImpl;
 import com.caiw.entity.StockTerm;
 import com.caiw.utils.AnalyseUtil;
+import com.caiw.utils.ShellUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,5 +38,6 @@ public class ScreenTerm {
             stockDao.setScreenFlag(stockCode);
         }
         //调用打分的程序，可以用shell去调
+        ShellUtil.doShell();
     }
 }

@@ -10,8 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>screen</artifactId>
-
-    <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>mysql</groupId>
@@ -40,11 +38,11 @@
                 <version>1.2.16</version>
             </dependency>
         </dependencies>
-    </dependencyManagement>
     <build>
         <plugins>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.0.0</version>
                 <configuration>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>

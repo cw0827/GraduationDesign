@@ -11,18 +11,19 @@
 
     <artifactId>streaming_cut_term</artifactId>
 
-    <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.apache.spark</groupId>
                 <artifactId>spark-core_2.11</artifactId>
                 <version>2.1.0</version>
+                <scope>provided</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-streaming -->
             <dependency>
                 <groupId>org.apache.spark</groupId>
                 <artifactId>spark-streaming_2.11</artifactId>
                 <version>2.1.0</version>
+                <scope>provided</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-streaming-kafka-0-10 -->
             <dependency>
@@ -30,12 +31,23 @@
                 <artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
                 <version>2.1.0</version>
             </dependency>
+            <dependency>
+                <groupId>org.ansj</groupId>
+                <artifactId>ansj_seg</artifactId>
+                <version>5.1.6</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>5.1.43</version>
+            </dependency>
         </dependencies>
-    </dependencyManagement>
+
     <build>
         <plugins>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.0.0</version>
                 <configuration>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>

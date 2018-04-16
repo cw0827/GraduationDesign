@@ -21,7 +21,7 @@ public class FileUtil {
         if(commentList.size() != 0){
             //打开文件
             String stockCode = commentList.get(0).getStockCode();
-            File file = new File("E:\\成都大学\\毕业设计\\data\\"+stockCode+"股票评论数据.txt");
+            File file = new File("/caiw/GraduationDesign/data/"+stockCode+"股票评论数据.txt");
             //如果文件不存在，先创建文件
             if(!(file.exists())){
                 try {

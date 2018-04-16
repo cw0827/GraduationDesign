@@ -61,6 +61,7 @@ public class GetData {
                 e.printStackTrace();
             }
             //调用筛选词汇的程序，可以用shell
+            ShellUtil.doShell();
         }
     }
 }

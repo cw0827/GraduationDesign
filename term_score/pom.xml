@@ -11,7 +11,6 @@
 
     <artifactId>term_score</artifactId>
 
-    <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>mysql</groupId>
@@ -35,12 +34,12 @@
             </dependency>
 
         </dependencies>
-    </dependencyManagement>
 
     <build>
         <plugins>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.0.0</version>
                 <configuration>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
