@@ -44,6 +44,7 @@
 * sparkStreaming实时处理
    * 描述：
    ```xml
+   <dependencies>
     <dependency>
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-core_2.11</artifactId>
@@ -61,6 +62,7 @@
       <artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
       <version>2.1.0</version>
     </dependency>
+  </dependencies>
     ```
 * kafka消息系统
     * 描述:
