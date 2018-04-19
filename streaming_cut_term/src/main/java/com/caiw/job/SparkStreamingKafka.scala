@@ -24,7 +24,7 @@ object SparkStreamingKafka {
 
     val kafkaProperties=Map[String,Object](
 //      "bootstrap.servers"-> "192.168.200.11:9092",
-      "bootstrap.servers"-> "47.106.142.94:9092",
+      "bootstrap.servers"-> "cw02:9092",
       "key.deserializer"->classOf[StringDeserializer],
       "value.deserializer"->classOf[StringDeserializer],
       "group.id"->"caiW",
