@@ -51,7 +51,7 @@ public class FileUtil {
         //股票代码
         String stockCode = commentList.get(0).getStockCode();
         //创建HdfsUtil对象
-        HdfsUtil hdfsUtil = new HdfsUtil("/"+stockCode+"股票评论数据.txt");
+        HdfsUtil hdfsUtil = new HdfsUtil("/data/"+stockCode+"股票评论数据.txt");
         StringBuffer buffer = new StringBuffer("");
         for (Comment comment : commentList) {
             buffer.append(comment.getId()).append("\t").append(comment.getStockCode()).append("\t").append(comment.getComment()).append("\t").append(comment.getCreateTime()).append("\n");

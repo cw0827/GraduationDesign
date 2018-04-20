@@ -56,7 +56,7 @@ public class GetData {
         producer.close();
         if(saveFlag){
             try {
-                Thread.sleep(30000);
+                Thread.sleep(60000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
