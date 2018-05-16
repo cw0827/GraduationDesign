@@ -4,7 +4,7 @@ select count(1) as `动词` from stock_term where nature = '动词';
 
 
 
--- 词性模板统计，并将次数低于70的排除
+-- 词性模板统计，并取出频数前八的模板
 select 
 b.comment_id,b.sentence_id,count(1) as `num`,b.sentence_nature,GROUP_CONCAT("-",b.sentence) as terms
 from 
@@ -14,17 +14,17 @@ from
 (SELECT 
 comment_id,sentence_id,nature,stock_term,stock_code 
 from stock_term s 
-where s.stock_code = '900908'
+where s.stock_code = '股票代码'
 ORDER BY s.comment_id,s.sentence_id,s.stock_term_id ) as `a`
 GROUP BY a.comment_id,a.sentence_id) as `b` 
-GROUP BY b.sentence_nature HAVING `num`>70 ORDER BY num desc;
+GROUP BY b.sentence_nature ORDER BY num desc limit 0,8;
 
 
 -- select * from stock_term GROUP BY comment_id,sentence_id
 
 select COUNT(1)
 FROM
-(select COUNT(1) as c from stock_term GROUP BY comment_id,sentence_id) as cc
+(select COUNT(1) as c from stock_term GROUP BY comment_id,sentence_id) as cc;
 
 
 
